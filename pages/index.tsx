@@ -15,6 +15,7 @@ export interface User {
 }
 
 const Home = () => {
+  console.log("test");
   return (
     <div>
       <h1>SSR</h1>
