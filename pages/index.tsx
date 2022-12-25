@@ -10,21 +10,14 @@ interface Users {
   name: string;
 }
 
-const Home: NextPage = () => {
-  const [user, setUser] = useState<Users[]>();
-  useEffect(() => {
-    const getUser = async () => {
-      const result = await axios.get(
-        "https://63a6a469f8f3f6d4ab0f5e08.mockapi.io/api/users"
-      );
-      setUser(result.data);
-    };
-    getUser();
-  }, []);
+interface HomeProps {
+  user: Users[];
+}
 
+const Home = ({ user }: HomeProps) => {
   return (
     <div>
-      <h1>User list</h1>
+      <h1>User list SSR</h1>
       {user?.map((item) => (
         <div key={item.id}>
           <Image
@@ -39,5 +32,13 @@ const Home: NextPage = () => {
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  const result = await axios.get(
+    "https://63a6a469f8f3f6d4ab0f5e08.mockapi.io/api/users"
+  );
+
+  return { props: { user: result.data } };
+}
 
 export default Home;
