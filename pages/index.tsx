@@ -14,12 +14,7 @@ export interface User {
   name: string;
 }
 
-interface HomeProps {
-  users: User[];
-  articles: Article[];
-}
-
-const Home = ({ users, articles }: HomeProps) => {
+const Home = () => {
   return (
     <div>
       <h1>SSR</h1>
