@@ -17,7 +17,6 @@ interface HomeProps {
 const Home = ({ user }: HomeProps) => {
   return (
     <div>
-      <h1>User list SSR</h1>
       {user?.map((item) => (
         <div key={item.id}>
           <Image
