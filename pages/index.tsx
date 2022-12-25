@@ -1,42 +1,44 @@
 import axios from "axios";
-import type { NextPage } from "next";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { Articles } from "../component/Articles";
+import { Users } from "../component/Users";
 
-interface Users {
+export interface Article {
+  createdAt: Date;
+  title: string;
+  id: string;
+  url: string;
+}
+export interface User {
   avatar: string;
   createdAt: Date;
   id: string;
   name: string;
 }
 
-const Home: NextPage = () => {
-  const [user, setUser] = useState<Users[]>();
-  useEffect(() => {
-    const getUser = async () => {
-      const result = await axios.get(
-        "https://63a6a469f8f3f6d4ab0f5e08.mockapi.io/api/users"
-      );
-      setUser(result.data);
-    };
-    getUser();
-  }, []);
+interface HomeProps {
+  users: User[];
+  articles: Article[];
+}
 
+const Home = ({ users, articles }: HomeProps) => {
   return (
     <div>
-      {user?.map((item) => (
-        <div key={item.id}>
-          <Image
-            width={40}
-            height={40}
-            src={item.avatar}
-            alt={`${item.name} img`}
-          />
-          <span>{item.name}</span>
-        </div>
-      ))}
+      <h1>SSR</h1>
+      <Users users={users} />
+      <Articles articles={articles} />
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  const userResult = await axios.get(
+    "https://63a6a469f8f3f6d4ab0f5e08.mockapi.io/api/users"
+  );
+  const articleResult = await axios.get(
+    "https://63a6a469f8f3f6d4ab0f5e08.mockapi.io/api/article"
+  );
+
+  return { props: { users: userResult.data, articles: articleResult.data } };
+}
 
 export default Home;
