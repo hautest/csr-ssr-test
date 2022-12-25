@@ -6,6 +6,7 @@ interface Users {
 }
 
 export const Users = ({ users }: Users) => {
+  console.log("d");
   return (
     <>
       <h2>User List</h2>
