@@ -24,6 +24,13 @@ const Home = ({ users, articles }: HomeProps) => {
   return (
     <div>
       <h1>SSR</h1>
+      <button
+        onClick={() => {
+          throw new Error("Sentry Frontend Error");
+        }}
+      >
+        Throw error
+      </button>
       <Users users={users} />
       <Articles articles={articles} />
     </div>
