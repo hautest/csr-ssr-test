@@ -15,10 +15,9 @@ export interface User {
 }
 
 const Home = () => {
-  console.log("test");
   return (
     <div>
-      <h1>SSR</h1>
+      <h1>CSR</h1>
       <Users />
       <Articles />
     </div>
