@@ -17,7 +17,6 @@ export interface User {
 const Home = () => {
   return (
     <div>
-      <h1>CSR</h1>
       <Users />
       <Articles />
     </div>
