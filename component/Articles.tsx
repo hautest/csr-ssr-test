@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Article } from "../pages";
 
 interface ArticlesProps {
