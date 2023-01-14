@@ -23,7 +23,6 @@ interface HomeProps {
 const Home = ({ users, articles }: HomeProps) => {
   return (
     <div>
-      <h1>SSR</h1>
       <Users users={users} />
       <Articles articles={articles} />
     </div>
